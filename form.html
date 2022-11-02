@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alkalinity Calculator</title>
+    <link rel="stylesheet" href="form.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">Alkalinity Calculator</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home<span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Version History <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Methods</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Specification Criteria</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#">Reporting Tips</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#">Reporting Tips</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#">Acid Lot Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#">FAQ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#">Download</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#">Mailing List</a>
+            </li>
+          </ul>
+        </div>
+    </div>
+      </nav>
+      
+    <form id="regForm" action="">
+        
+        
+        
+        <!-- One "tab" for each step in the form: -->
+        <div class="tab"><h3>Sample Information</h3>
+            <div class="row">
+                <div class="col">
+                    <label for="name">Site Name:</label>
+                    <input type="text" id="name">
+                </div>
+                <div class="col">
+                    <label for="id">Site ID:</label>
+                    <input type="text" id="id">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="date">Collection Date:</label>
+                    <input type="date" id="date">
+                </div>
+                <div class="col">
+                    <label for="time">Collection Time:</label>
+                    <input type="time" id="time">
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab"><h3>Titration Info</h3>
+            <div class="row">
+                <div class="col">
+                    <label for="analyst">Analyst:</label>
+                    <input type="text" id="analyst">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="anadate">Analysis Date:</label>
+                    <input type="date" id="anadate">
+                </div>
+                <div class="col">
+                    <label for="anatime">Analysis Time:</label>
+                    <input type="time" id="anatime">
+                </div>
+                </div>
+                <div class="row">
+                <div class="col">
+                    <label for="temp">Sample Temperature:</label>
+                    <input type="number" id="temp"><span>&nbsp &degC</span>
+                </div>
+                <div class="col">
+                    <label for="vol">Sample Volume:</label>
+                    <input type="number" id="vol"><span>&nbsp mL</span>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col">
+                    <label for="cond">Specific Conductance:</label>
+                    <input type="number" id="cond"><span>&nbsp µS/cm</span>
+                </div>
+                <div class="col">
+                    <label for="filtered">Filtered Sample?:</label>
+                    <select name="filtered" id="filtered">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="conc">Acid Concentration:</label>
+                    <select name="conc" 
+          onchange="if(this.options[this.selectedIndex].value=='customOption'){
+              toggleField(this,this.nextSibling);
+              this.selectedIndex='0';
+          }">
+            <option></option>
+            <option>1.60</option>
+            <option>0.1600</option>
+            <option>0.01639</option>
+            <option value="customOption">[type another value]</option>
+        </select><input name="browser" style="display:none;" disabled="disabled" 
+            onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
+            <span>&nbsp N</span>
+                </div>
+                <div class="col">
+                    <label for="lot">Acid Lot Number:</label>
+                    <input type="number" id="lot">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="expiry">Acid Expiration Date:</label>
+                    <input type="date" id="expiry">
+                </div>
+                <div class="col">
+                    <label for="correction">Acid Correction Factor:</label>
+                    <input type="text" id="correction" value="1.01">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="stirring">Stirring Method:</label>
+                    <select name="stirring" id="stirring">
+                        <option value="mag">magnetic</option>
+                        <option value="man">manual</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="titration">Stirring Method:</label>
+                    <select name="titration" id="titration">
+                        <option value="dig">Digital titrator</option>
+                        <option value="bur">Buret titration</option>
+                    </select>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col">
+                    <label for="data">Titration Data:
+                        <textarea name="data" id="data" cols="40" rows="6"></textarea>
+                        </label>
+                </div>
+                
+                <div class="col">
+                    <label for="order">Enter two columns of data:
+                    <select name="order" id="order">
+                        <option value="pH">pH in 1st col, titrant in 2nd</option>
+                        <option value="titrant">titrant in 1st col, pH in 2nd</option>
+                    </select>
+                    <div style="color:red;margin-bottom:2px">Data must be delimited by a comma or by one or more spaces.
+                        You may "paste" your data into this form with the mouse.</div>
+                    <div>Digital titrator: (counts)</div>
+                       <div> Titrant volumes are specified in "counts" and are assumed
+                        to come from a Hach digital titrator (800 counts per mL).</div>
+                        <div>        
+                        Buret titration: (mL)</div>
+                        <div>
+                        Titrant volumes from a buret titration are specified in
+                        milliliters (mL) of acid added.</div></label>
+                </div> -->
+            <!-- </div>
+            <div class="row">
+                <div class="col">
+                    <label for="comment">Comments:
+                        <textarea name="comment" id="comment" cols="80" rows="3"></textarea></label>
+                </div>
+            </div> -->
+        </div>
+        
+        <div class="tab"><h3>Titration Data</h3>
+            <div class="row">
+                <div class="col">
+                    <label for="data">Titration Data:
+                        <textarea name="data" id="data" cols="40" rows="6"></textarea>
+                        </label>
+                </div>
+                <!-- <div class="col">
+                    <label for="comment">Comments:
+                    <textarea name="comment" id="comment" cols="40" rows="4"></textarea></label>
+                </div> -->
+                <div class="col">
+                    <label for="order">Enter two columns of data:
+                    <select name="order" id="order">
+                        <option value="pH">pH in 1st col, titrant in 2nd</option>
+                        <option value="titrant">titrant in 1st col, pH in 2nd</option>
+                    </select>
+                    <div style="color:red;margin-bottom:2px">Data must be delimited by a comma or by one or more spaces.
+                        You may "paste" your data into this form with the mouse.</div>
+                    <div>Digital titrator: (counts)</div>
+                       <div> Titrant volumes are specified in "counts" and are assumed
+                        to come from a Hach digital titrator (800 counts per mL).</div>
+                        <div>        
+                        Buret titration: (mL)</div>
+                        <div>
+                        Titrant volumes from a buret titration are specified in
+                        milliliters (mL) of acid added.</div></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="comment">Comments:
+                        <textarea name="comment" id="comment" cols="80" rows="3"></textarea></label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab"><h3>Titration Analysis:</h3>
+         <!-- <div class="row">
+            <div class="col"> -->
+              <th align="right" valign="top">
+                <label style="margin-bottom:0px">Analysis Methods:</label>
+              </th>
+              <td nowrap colspan="3">Check one or more of analysis methods you want to use</td><br>
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="check" name="inc" checked>
+                            Inflection point method
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="gran"  class="check">
+                             Gran function plot method
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="theor">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="fit" class="check">
+                            <span>Theoretical carbonate titration curve method</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="fixed" id="fixed" class="checked" onchange="enable_fixed_setpoints()">&nbsp;&nbsp;Fixed Endpoint:
+                        </td>
+                        <td nowrap>
+                            <small>
+                                
+                                <input type="checkbox" id="carb" class="check" name="carb" onchange="enable_carb_endpt()" checked disabled>Carbonate: &nbsp;&nbsp; pH =
+                                <input type="text" class="endpoint" name="carb_endpt" id="carb_endpt" size="5" value="8.3" disabled>
+                                <br>
+                                <!-- &nbsp;&nbsp;&nbsp; -->
+                                <input type="checkbox" id="bicarb" class="check" name="bicarb"  onchange="enable_bicarb_endpt()" checked disabled>Bicarbonate: &nbsp; pH =
+                                <input type="text" class="endpoint"  name="bicarb_endpt" id="bicarb_endpt" size="5" value="4.5" disabled>
+                            </small>
+                        </td>
+                    </tr>
+
+                </tbody>
+              </table>
+              <div>
+                <label for="specification" style="margin-bottom:0px">Specification Method:</label>
+                <div class="speci">The advanced speciation method will be used for the calculation of carbonate
+                    and bicarbonate concentrations; the simple mass-balance speciation method is
+                    deprecated and no longer available.</div>
+              </div>
+<!--   
+            </div>
+         </div> -->
+        </div>
+        
+        <div style="overflow:auto;">
+            <div style="float:right;">
+                <button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                <button type="button" class="btn btn-dark" id="nextBtn" onclick="nextPrev(1)">Next</button>
+            </div>
+        </div>
+        
+        <!-- Circles which indicates the steps of the form: -->
+        <div style="text-align:center;margin-top:40px;">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
+        
+    </form>
+    <footer>
+        <div class="row" style="background-color: rgb(132, 132, 212);;color: white;">
+            <div class="col">Accessibility</div>
+            <div class="col">FOIA</div>
+            <div class="col">Privacy</div>
+            <div class="col">Policies and Notices</div>
+        </div>
+        <div class="row">
+            <div class="col" ><a href="#" style="margin-right: 2px;">U.S.Department of the Interior</a>|<a href="#" style="margin-left: 2px;">U.S. Geological Survey</a></div>
+        </div>
+        <div>
+            URL: https://abc.com
+        </div>
+        <div>
+            Page Contact Information: ABC
+        </div>
+        <div>
+            Page Last Modified: Friday - Oct 28,2022 at 16:45:58 IST
+        </div>
+    </footer>
+    
+    <script src="form.js"></script>
+    
+</body>
+</html>
