@@ -13,6 +13,7 @@ function showTab(n) {
   }
   if (n == x.length - 1) {
     document.getElementById("nextBtn").innerHTML = "Calculate!";
+    // CalculateAlk();
   } else {
     document.getElementById("nextBtn").innerHTML = "Next";
   }
@@ -113,3 +114,21 @@ function enable_bicarb_endpt() {
   document.getElementById("bicarb_endpt").disabled =
     !document.getElementById("bicarb_endpt").disabled;
 }
+function CalculateAlk() {
+  var volH2SO4 = document.getElementById('vol2');
+  var sampleVol = document.getElementById('vol');
+  const normality = 0.02;
+  const alkalinity = (volH2SO4 * normality * 50 * 1000) / sampleVol;
+  document.getElementbyId('result').innerHTML = 'Alkalinity of given sample is'+alkalinity+'mg/L of CaCO3'
+}
+function checkRange() {
+  
+  
+  if (document.getElementById('vol')?.value < 10) { alert("Sample Volume should be greater than 10");  return false;} 
+  if ( document.getElementById('vol')?.value > 100){ alert("Sample Volume should be less than 100"); return false;}
+  if ( document.getElementById('vol2')?.value < 0){ alert("Sample Volume should be greater than 0"); return false;}
+  if (document.getElementById('vol2')?.value > 12) { alert("Sample Volume should be less than 12"); return false; }
+  return true;
+}
+
+

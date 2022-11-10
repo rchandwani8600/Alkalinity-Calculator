@@ -55,7 +55,7 @@
     </div>
       </nav>
       
-    <form id="regForm" action="">
+    <form id="regForm" action="" onsubmit="calculateAlk();return false;">
         
         
         
@@ -102,44 +102,34 @@
                 </div>
                 <div class="row">
                 <div class="col">
-                    <label for="temp">Sample Temperature:</label>
-                    <input type="number" id="temp"><span>&nbsp &degC</span>
+                    <label for="temp" style="color:red">Sample Temperature:</label>
+                    <input type="number" id="temp" value="25" disabled><span>&nbsp &degC</span>
                 </div>
                 <div class="col">
-                    <label for="vol">Sample Volume:</label>
-                    <input type="number" id="vol"><span>&nbsp mL</span>
+                    <label for="vol" style="color:red">Sample Volume:</label>
+                    <input type="number" id="vol" value="100" min="10" max="100"><span>&nbsp mL</span>
                 </div>
                 </div>
                 <div class="row">
                 <div class="col">
-                    <label for="cond">Specific Conductance:</label>
-                    <input type="number" id="cond"><span>&nbsp µS/cm</span>
+                    <label for="vol2" style="color:red">Volume of H2SO4</label>
+                    <input type="number" min="0" max="50" id="vol2" value="12"><span>&nbsp mL</span>
                 </div>
+                <div class="col">
+                    <label for="conc" style="color: red;">Normality of H2SO4:</label>
+                    <input type="text" value="0.02" disabled>
+            <span>&nbsp N</span>
+                  
+
+                </div>
+            </div>
+            <div class="row">
                 <div class="col">
                     <label for="filtered">Filtered Sample?:</label>
                     <select name="filtered" id="filtered">
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                     </select>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label for="conc">Acid Concentration:</label>
-                    <select name="conc" 
-          onchange="if(this.options[this.selectedIndex].value=='customOption'){
-              toggleField(this,this.nextSibling);
-              this.selectedIndex='0';
-          }">
-            <option></option>
-            <option>1.60</option>
-            <option>0.1600</option>
-            <option>0.01639</option>
-            <option value="customOption">[type another value]</option>
-        </select><input name="browser" style="display:none;" disabled="disabled" 
-            onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
-            <span>&nbsp N</span>
                 </div>
                 <div class="col">
                     <label for="lot">Acid Lot Number:</label>
@@ -300,7 +290,7 @@
         <div style="overflow:auto;">
             <div style="float:right;">
                 <button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                <button type="button" class="btn btn-dark" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                <button type="button" class="btn btn-dark" id="nextBtn" onclick="checkRange()?nextPrev(1):nextPrev(0)">Next</button>
             </div>
         </div>
         
@@ -311,7 +301,7 @@
             <span class="step"></span>
             <span class="step"></span>
         </div>
-        
+        <span id = "message" style="color:red"> </span> <br><br> 
     </form>
     <footer>
         <div class="row" style="background-color: rgb(132, 132, 212);;color: white;">
