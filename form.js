@@ -114,12 +114,15 @@ function enable_bicarb_endpt() {
   document.getElementById("bicarb_endpt").disabled =
     !document.getElementById("bicarb_endpt").disabled;
 }
-function CalculateAlk() {
-  var volH2SO4 = document.getElementById('vol2');
-  var sampleVol = document.getElementById('vol');
+function calculateAlk() {
+  var volH2SO4 = document.getElementById('vol2').value;
+  var sampleVol = document.getElementById('vol').value;
   const normality = 0.02;
-  const alkalinity = (volH2SO4 * normality * 50 * 1000) / sampleVol;
-  document.getElementbyId('result').innerHTML = 'Alkalinity of given sample is'+alkalinity+'mg/L of CaCO3'
+  var alkalinity = (volH2SO4 * normality * 50 * 1000) / sampleVol;
+  console.log(volH2SO4)
+  document.getElementById('result').innerHTML = 'Alkalinity of given sample is' + alkalinity + ' mg/L of CaCO3'
+  alert("alkalinity")
+  return false;
 }
 function checkRange() {
   
@@ -130,5 +133,12 @@ function checkRange() {
   if (document.getElementById('vol2')?.value > 12) { alert("Sample Volume should be less than 12"); return false; }
   return true;
 }
+
+const element = document.querySelector('form');
+element.addEventListener('submit', event => {
+  event.preventDefault();
+  // actual logic, e.g. validate the form
+  console.log('Form submission cancelled.');
+});
 
 

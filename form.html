@@ -55,7 +55,7 @@
     </div>
       </nav>
       
-    <form id="regForm" action="" onsubmit="calculateAlk();return false;">
+    <form id="regForm"  onsubmit="event.preventDefault(); return calculateAlk()">
         
         
         
@@ -290,7 +290,7 @@
         <div style="overflow:auto;">
             <div style="float:right;">
                 <button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                <button type="button" class="btn btn-dark" id="nextBtn" onclick="checkRange()?nextPrev(1):nextPrev(0)">Next</button>
+                <button type="button" class="btn btn-dark" id="nextBtn" onclick="checkRange()?nextPrev(1):nextPrev(0);">Next</button>
             </div>
         </div>
         
@@ -301,7 +301,7 @@
             <span class="step"></span>
             <span class="step"></span>
         </div>
-        <span id = "message" style="color:red"> </span> <br><br> 
+        <span id = "result" style="color:red"> </span> <br><br> 
     </form>
     <footer>
         <div class="row" style="background-color: rgb(132, 132, 212);;color: white;">
