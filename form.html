@@ -10,8 +10,9 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
 </head>
-<body>
+<body onload="myFunction()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
         <a class="navbar-brand" href="#">Alkalinity Calculator</a>
@@ -302,7 +303,9 @@
             <span class="step"></span>
         </div>
         <span id = "result" style="color:red"> </span> <br><br> 
+
     </form>
+
     <footer>
         <div class="row" style="background-color: rgb(132, 132, 212);;color: white;">
             <div class="col">Accessibility</div>
