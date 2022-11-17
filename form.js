@@ -1,4 +1,7 @@
+
+
 var currentTab = 0; // Current tab is set to be the first tab (0)
+console.log("Hello");
 showTab(currentTab); // Display the current tab
 
 function showTab(n) {
@@ -33,6 +36,7 @@ function nextPrev(n) {
   // if you have reached the end of the form... :
   if (currentTab >= x.length) {
     //...the form gets submitted:
+    calculateAlk();
     document.getElementById("regForm").submit();
     return false;
   }
@@ -115,13 +119,14 @@ function enable_bicarb_endpt() {
     !document.getElementById("bicarb_endpt").disabled;
 }
 function calculateAlk() {
+  window.alert("sometext");
   var volH2SO4 = document.getElementById('vol2').value;
   var sampleVol = document.getElementById('vol').value;
   const normality = 0.02;
   var alkalinity = (volH2SO4 * normality * 50 * 1000) / sampleVol;
   console.log(volH2SO4)
   document.getElementById('result').innerHTML = 'Alkalinity of given sample is' + alkalinity + ' mg/L of CaCO3'
-  alert("alkalinity")
+  document.write( 'Alkalinity of given sample is : ' + alkalinity + ' mg/L of CaCO3');
   return false;
 }
 function checkRange() {
@@ -134,90 +139,6 @@ function checkRange() {
   return true;
 }
 
-const element = document.querySelector('form');
-element.addEventListener('submit', event => {
-  event.preventDefault();
-  // actual logic, e.g. validate the form
-  console.log('Form submission cancelled.');
-});
 
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBWLU0CDOkT22VcMyDPvPQjgUUkX7kVYWI",
-  authDomain: "alkalinity-calculator.firebaseapp.com",
-  projectId: "alkalinity-calculator",
-  storageBucket: "alkalinity-calculator.appspot.com",
-  messagingSenderId: "853897256755",
-  appId: "1:853897256755:web:0d03f8047a722f1cdee846",
-  databaseURL:"https://alkalinity-calculator-default-rtdb.firebaseio.com/"
-};
 
-// initialize firebase
-firebase.initializeApp(firebaseConfig);
-
-// reference your database
-var contactFormDB = firebase.database().ref("regForm");
-
-document.getElementById("regForm").addEventListener("submit", submitForm);
-
-function submitForm(e) {
-  e.preventDefault();
-
-  var name = getElementVal("name");
-  var emailid = getElementVal("emailid");
-  var msgContent = getElementVal("msgContent");
-
-  saveMessages(name, emailid, msgContent);
-
-  //   enable alert
-  document.querySelector(".alert").style.display = "block";
-
-  //   remove the alert
-  setTimeout(() => {
-    document.querySelector(".alert").style.display = "none";
-  }, 3000);
-
-  //   reset the form
-  document.getElementById("regForm").reset();
-}
-
-const saveMessages = (name, emailid, msgContent) => {
-  var newContactForm = contactFormDB.push();
-
-  newContactForm.set({
-    name: name,
-    emailid: emailid,
-    msgContent: msgContent,
-  });
-};
-
-const getElementVal = (id) => {
-  return document.getElementById(id).value;
-};
-
-function onSuccess(position){
-  let {latitude, longitude} = position.coords;
-  fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=39e03b6b68bc444ea8db8f3df75100c8`)
-  .then(response => response.json()).then(response =>{
-      let allDetails = response.results[0].components;
-      console.table(allDetails);
-      
-  }).catch(()=>{
-  });
-}
-
-function onError(error){
-  if(error.code == 1){
-      alert("You denied the request");
-  }else{
-      alert("Something went wrong");
-  }
-  button.setAttribute("disabled", "true");
-}
-
-function myFunction(){
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
-}else{
-} 
-}
